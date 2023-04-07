@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>嵌入式 on LIN&#39;s Blog</title>
-    <link>https://examplesite.com/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/</link>
+    <link>https://2651350543.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/</link>
     <description>Recent content in 嵌入式 on LIN&#39;s Blog</description>
     <image>
       <title>LIN&#39;s Blog</title>
-      <url>https://examplesite.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://examplesite.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>https://2651350543.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://2651350543.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 04 Apr 2023 20:46:54 +0800</lastBuildDate><atom:link href="https://examplesite.com/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 04 Apr 2023 20:46:54 +0800</lastBuildDate><atom:link href="https://2651350543.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>快速上手MQTT——应用于PC端以及ESP32端</title>
-      <link>https://examplesite.com/posts/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8Bmqtt%E5%BA%94%E7%94%A8%E4%BA%8Epc%E7%AB%AF%E4%BB%A5%E5%8F%8Aesp32%E7%AB%AF/</link>
+      <link>https://2651350543.github.io/posts/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8Bmqtt%E5%BA%94%E7%94%A8%E4%BA%8Epc%E7%AB%AF%E4%BB%A5%E5%8F%8Aesp32%E7%AB%AF/</link>
       <pubDate>Tue, 04 Apr 2023 20:46:54 +0800</pubDate>
       
-      <guid>https://examplesite.com/posts/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8Bmqtt%E5%BA%94%E7%94%A8%E4%BA%8Epc%E7%AB%AF%E4%BB%A5%E5%8F%8Aesp32%E7%AB%AF/</guid>
+      <guid>https://2651350543.github.io/posts/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8Bmqtt%E5%BA%94%E7%94%A8%E4%BA%8Epc%E7%AB%AF%E4%BB%A5%E5%8F%8Aesp32%E7%AB%AF/</guid>
       <description>MQTT介绍 MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议），是一种基于发布/订阅（publish/subscribe）模式的“轻量级”通讯协议。
 MQTT最大优点在于，用极少的代码和有限的带宽，为连接远程设备提供实时可靠的消息服务。
 作为一种低开销、低带宽占用的即时通讯协议，使其在物联网、小型设备、移动应用等方面有较广泛的应用。

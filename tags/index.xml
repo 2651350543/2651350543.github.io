@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on LIN&#39;s Blog</title>
-    <link>https://examplesite.com/tags/</link>
+    <link>https://2651350543.github.io/tags/</link>
     <description>Recent content in Tags on LIN&#39;s Blog</description>
     <image>
       <title>LIN&#39;s Blog</title>
-      <url>https://examplesite.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://examplesite.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>https://2651350543.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://2651350543.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 04 Apr 2023 20:46:54 +0800</lastBuildDate><atom:link href="https://examplesite.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 04 Apr 2023 20:46:54 +0800</lastBuildDate><atom:link href="https://2651350543.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>嵌入式</title>
-      <link>https://examplesite.com/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/</link>
+      <link>https://2651350543.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/</link>
       <pubDate>Tue, 04 Apr 2023 20:46:54 +0800</pubDate>
       
-      <guid>https://examplesite.com/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/</guid>
+      <guid>https://2651350543.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/</guid>
       <description></description>
     </item>
     
     <item>
       <title>探索发现</title>
-      <link>https://examplesite.com/tags/%E6%8E%A2%E7%B4%A2%E5%8F%91%E7%8E%B0/</link>
+      <link>https://2651350543.github.io/tags/%E6%8E%A2%E7%B4%A2%E5%8F%91%E7%8E%B0/</link>
       <pubDate>Sun, 02 Apr 2023 11:41:38 +0800</pubDate>
       
-      <guid>https://examplesite.com/tags/%E6%8E%A2%E7%B4%A2%E5%8F%91%E7%8E%B0/</guid>
+      <guid>https://2651350543.github.io/tags/%E6%8E%A2%E7%B4%A2%E5%8F%91%E7%8E%B0/</guid>
       <description></description>
     </item>
     
     <item>
       <title>网站相关</title>
-      <link>https://examplesite.com/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</link>
+      <link>https://2651350543.github.io/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</link>
       <pubDate>Thu, 30 Mar 2023 15:03:01 +0800</pubDate>
       
-      <guid>https://examplesite.com/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</guid>
+      <guid>https://2651350543.github.io/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</guid>
       <description></description>
     </item>
     

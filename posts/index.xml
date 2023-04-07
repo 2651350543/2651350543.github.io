@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on LIN&#39;s Blog</title>
-    <link>https://examplesite.com/posts/</link>
+    <link>https://2651350543.github.io/posts/</link>
     <description>Recent content in Posts on LIN&#39;s Blog</description>
     <image>
       <title>LIN&#39;s Blog</title>
-      <url>https://examplesite.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://examplesite.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>https://2651350543.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://2651350543.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 04 Apr 2023 20:46:54 +0800</lastBuildDate><atom:link href="https://examplesite.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 04 Apr 2023 20:46:54 +0800</lastBuildDate><atom:link href="https://2651350543.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>快速上手MQTT——应用于PC端以及ESP32端</title>
-      <link>https://examplesite.com/posts/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8Bmqtt%E5%BA%94%E7%94%A8%E4%BA%8Epc%E7%AB%AF%E4%BB%A5%E5%8F%8Aesp32%E7%AB%AF/</link>
+      <link>https://2651350543.github.io/posts/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8Bmqtt%E5%BA%94%E7%94%A8%E4%BA%8Epc%E7%AB%AF%E4%BB%A5%E5%8F%8Aesp32%E7%AB%AF/</link>
       <pubDate>Tue, 04 Apr 2023 20:46:54 +0800</pubDate>
       
-      <guid>https://examplesite.com/posts/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8Bmqtt%E5%BA%94%E7%94%A8%E4%BA%8Epc%E7%AB%AF%E4%BB%A5%E5%8F%8Aesp32%E7%AB%AF/</guid>
+      <guid>https://2651350543.github.io/posts/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8Bmqtt%E5%BA%94%E7%94%A8%E4%BA%8Epc%E7%AB%AF%E4%BB%A5%E5%8F%8Aesp32%E7%AB%AF/</guid>
       <description>MQTT介绍 MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议），是一种基于发布/订阅（publish/subscribe）模式的“轻量级”通讯协议。
 MQTT最大优点在于，用极少的代码和有限的带宽，为连接远程设备提供实时可靠的消息服务。
 作为一种低开销、低带宽占用的即时通讯协议，使其在物联网、小型设备、移动应用等方面有较广泛的应用。
@@ -39,10 +39,10 @@ import random import time from paho.mqtt import client as mqtt_client broker = &
     
     <item>
       <title>Typora的图床设置——使用upgit</title>
-      <link>https://examplesite.com/posts/typora%E7%9A%84%E5%9B%BE%E5%BA%8A%E8%AE%BE%E7%BD%AE/</link>
+      <link>https://2651350543.github.io/posts/typora%E7%9A%84%E5%9B%BE%E5%BA%8A%E8%AE%BE%E7%BD%AE/</link>
       <pubDate>Sun, 02 Apr 2023 11:41:38 +0800</pubDate>
       
-      <guid>https://examplesite.com/posts/typora%E7%9A%84%E5%9B%BE%E5%BA%8A%E8%AE%BE%E7%BD%AE/</guid>
+      <guid>https://2651350543.github.io/posts/typora%E7%9A%84%E5%9B%BE%E5%BA%8A%E8%AE%BE%E7%BD%AE/</guid>
       <description>Typora介绍 按照 Typora官网的说法，Typora 是一款Markdown编辑器和阅读器。
 同时，Typora 也在它的网站上贴了许多标签：风格极简 、多种主题 、支持 macOS，Windows及Linux实时预览、 图片与文字、 代码块 、数学公式 、图表目录大纲、文件管理、导入与导出等。
 简单来说，Typora是一款简约功能且强大的编辑器。并且Typora对不熟悉Markdown的小伙伴们十分友好，基本上可以快速上手。\(@^0^@)/
@@ -60,10 +60,10 @@ import random import time from paho.mqtt import client as mqtt_client broker = &
     
     <item>
       <title>搭建博客  以hugo和halo为例</title>
-      <link>https://examplesite.com/posts/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2--%E4%BB%A5hugo%E5%92%8Chalo%E4%B8%BA%E4%BE%8B/</link>
+      <link>https://2651350543.github.io/posts/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2--%E4%BB%A5hugo%E5%92%8Chalo%E4%B8%BA%E4%BE%8B/</link>
       <pubDate>Thu, 30 Mar 2023 15:03:01 +0800</pubDate>
       
-      <guid>https://examplesite.com/posts/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2--%E4%BB%A5hugo%E5%92%8Chalo%E4%B8%BA%E4%BE%8B/</guid>
+      <guid>https://2651350543.github.io/posts/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2--%E4%BB%A5hugo%E5%92%8Chalo%E4%B8%BA%E4%BE%8B/</guid>
       <description>1.博客的现状 现在网络上有很多的博客平台，比如CSDN、掘金、简书、博客园、知乎等等。在搜索引擎搜索相关内容时，往往前面几篇都被这几个大平台垄断了，个人博客一般隐藏在后面，如果没有做SEO优化，甚至完全搜不到，而很多优质的文章都藏在个人博客里面，现在很多静态博客都会和Github结合起来搭建，而Github屏蔽了百度的爬虫抓取，所以在百度很难搜到搭建在GitHub的个人博客，这是一大遗憾。
 Tips: SEO是指按照搜索引擎的算法，提升你的文章在搜索引擎中的自然排名。 2.博客的分类 博客一般可以分为静态博客和动态博客。
 静态博客：一般来说只有前端展示，即直接渲染生成HTML标准的文件呈现给客户端，没有后端数据库支持的博客叫做静态博客。此类博客比较轻量级，部署简单，成本较低，速度也很快，安全性高。
@@ -76,10 +76,10 @@ Welcome to Ubuntu 20.04.5 LTS (GNU/Linux 5.4.0-90-generic x86_64) * Documentatio
     
     <item>
       <title>HelloWorld</title>
-      <link>https://examplesite.com/posts/helloworld/</link>
+      <link>https://2651350543.github.io/posts/helloworld/</link>
       <pubDate>Thu, 30 Mar 2023 14:56:22 +0800</pubDate>
       
-      <guid>https://examplesite.com/posts/helloworld/</guid>
+      <guid>https://2651350543.github.io/posts/helloworld/</guid>
       <description>这是一篇测试博客
 #include &amp;lt;stdio.h&amp;gt; int main() { printf(&amp;#34;Hello, World!&amp;#34;); return 0; } 文章发布成功！</description>
     </item>
