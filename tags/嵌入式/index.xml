@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>嵌入式 on LIN&#39;s Blog</title>
+    <link>https://examplesite.com/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/</link>
+    <description>Recent content in 嵌入式 on LIN&#39;s Blog</description>
+    <image>
+      <title>LIN&#39;s Blog</title>
+      <url>https://examplesite.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://examplesite.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 04 Apr 2023 20:46:54 +0800</lastBuildDate><atom:link href="https://examplesite.com/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>快速上手MQTT——应用于PC端以及ESP32端</title>
+      <link>https://examplesite.com/posts/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8Bmqtt%E5%BA%94%E7%94%A8%E4%BA%8Epc%E7%AB%AF%E4%BB%A5%E5%8F%8Aesp32%E7%AB%AF/</link>
+      <pubDate>Tue, 04 Apr 2023 20:46:54 +0800</pubDate>
+      
+      <guid>https://examplesite.com/posts/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8Bmqtt%E5%BA%94%E7%94%A8%E4%BA%8Epc%E7%AB%AF%E4%BB%A5%E5%8F%8Aesp32%E7%AB%AF/</guid>
+      <description>MQTT介绍 MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议），是一种基于发布/订阅（publish/subscribe）模式的“轻量级”通讯协议。
+MQTT最大优点在于，用极少的代码和有限的带宽，为连接远程设备提供实时可靠的消息服务。
+作为一种低开销、低带宽占用的即时通讯协议，使其在物联网、小型设备、移动应用等方面有较广泛的应用。
+在这里笔者不打算做原理性的介绍，而是直接进行演示MQTT的使用过程。
+MQTT 服务器 在生产环境中，正常是需要部署MQTT服务器的（或者是使用云服务器厂商的物联网平台）。笔者只是进行短暂的测试，所以使用免费的在线 MQTT 服务器。
+EMQ的免费服务器为 2 个节点的 EMQX 企业版集群，部署在上海腾讯云。
+EMQ 提供了通俗易懂的技术文章，帮助开发者快速了解 MQTT 协议及其相关特性。
+参考EMQ的使用手册，笔者了解到进行测试需要MQTT 服务器信息。
+当然，EMQ提供了MQTT客户端工具（用于快速连接和测试 MQTT 服务与应用），可以用来快速测试MQTT服务器的可用性。
+在这里，笔者演示使用online-mqtt-client。步骤如下。
+进入MQTT客户端工具，界面如下。 参考公共MQTT服务器地址，新建连接。
+连接成功，可以看到绿色的提示符。
+输入订阅的主题，发送数据。
+如果此时没有订阅该主题，是无法接收到数据的，这个时候可以在客户端添加订阅进行测试（或者通过代码对该主题进行订阅）。
+发送数据，得到反馈，测试成功。
+PC端MQTT测试 参考文档如何在 Python 中使用 MQTT | EMQ (emqx.com)进行测试，参考文档十分详细，因此笔者只提供publish、subscribe的两个文件的代码。
+publish.py(代码用于实现向/python/mqtt主题发送消息，消息内容是计数值1、2、3······)
+import random import time from paho.mqtt import client as mqtt_client broker = &amp;#39;broker-cn.emqx.io&amp;#39; port = 1883 topic = &amp;#34;/python/mqtt&amp;#34; # generate client ID with pub prefix randomly client_id = f&amp;#39;python-mqtt-{random.</description>
+    </item>
+    
+  </channel>
+</rss>

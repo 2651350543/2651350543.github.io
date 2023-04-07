@@ -1,0 +1,277 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>搭建博客 以hugo和halo为例 | LIN's Blog</title><meta name=keywords content="网站相关"><meta name=description content="1.博客的现状 现在网络上有很多的博客平台，比如CSDN、掘金、简书、博客园、知乎等等。在搜索引擎搜索相关内容时，往往前面几篇都被这几个大平台垄断了，个人博客一般隐藏在后面，如果没有做SEO优化，甚至完全搜不到，而很多优质的文章都藏在个人博客里面，现在很多静态博客都会和Github结合起来搭建，而Github屏蔽了百度的爬虫抓取，所以在百度很难搜到搭建在GitHub的个人博客，这是一大遗憾。
+Tips: SEO是指按照搜索引擎的算法，提升你的文章在搜索引擎中的自然排名。 2.博客的分类 博客一般可以分为静态博客和动态博客。
+静态博客：一般来说只有前端展示，即直接渲染生成HTML标准的文件呈现给客户端，没有后端数据库支持的博客叫做静态博客。此类博客比较轻量级，部署简单，成本较低，速度也很快，安全性高。
+动态博客：动态指的是前端html和css等展示是通过动态调用再解析而成，不是生成的现成静态文件，且会与后台数据库进行交互，进行数据传递。
+Tips: 通俗理解就是静态博客不需要使用服务器，而动态博客需要使用服务器进行交互。 3.动态博客搭建(halo) 当手中有一台云服务器（或者有一台具有公网IP的电脑），可以使用这种博客搭建方式。下面是以云服务器为例的具体搭建方法。
+SSH远程连接云服务器终端(使用mobaxterm)
+以下是服务器登录后的终端界面
+Welcome to Ubuntu 20.04.5 LTS (GNU/Linux 5.4.0-90-generic x86_64) * Documentation: https://help.ubuntu.com * Management: https://landscape.canonical.com * Support: https://ubuntu.com/advantage * Introducing Expanded Security Maintenance for Applications. Receive updates to over 25,000 software packages with your Ubuntu Pro subscription. Free for personal use. https://ubuntu.com/pro New release '22.04.2 LTS' available. Run 'do-release-upgrade' to upgrade to it. Welcome to Alibaba Cloud Elastic Compute Service !"><meta name=author content="Me"><link rel=canonical href=https://examplesite.com/posts/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2--%E4%BB%A5hugo%E5%92%8Chalo%E4%B8%BA%E4%BE%8B/><meta name=google-site-verification content="卞翰林"><meta name=yandex-verification content="卞翰林"><meta name=msvalidate.01 content="卞翰林"><link crossorigin=anonymous href=/assets/css/stylesheet.d74d5c4443e07fbe57c88e262870c89591efc9136f3d00b0e75592ee162f9938.css integrity="sha256-101cREPgf75XyI4mKHDIlZHvyRNvPQCw51WS7hYvmTg=" rel="preload stylesheet" as=style><script defer crossorigin=anonymous src=/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG+9vmJ0cTS+ovo0FeA=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href="https://avatars.githubusercontent.com/u/61782894?v=4"><link rel=icon type=image/png sizes=16x16 href="https://avatars.githubusercontent.com/u/61782894?v=4"><link rel=icon type=image/png sizes=32x32 href="https://avatars.githubusercontent.com/u/61782894?v=4"><link rel=apple-touch-icon href="https://avatars.githubusercontent.com/u/61782894?v=4"><link rel=mask-icon href="https://avatars.githubusercontent.com/u/61782894?v=4"><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-123-45","auto"),ga("send","pageview"))</script><meta property="og:title" content="搭建博客  以hugo和halo为例"><meta property="og:description" content="1.博客的现状 现在网络上有很多的博客平台，比如CSDN、掘金、简书、博客园、知乎等等。在搜索引擎搜索相关内容时，往往前面几篇都被这几个大平台垄断了，个人博客一般隐藏在后面，如果没有做SEO优化，甚至完全搜不到，而很多优质的文章都藏在个人博客里面，现在很多静态博客都会和Github结合起来搭建，而Github屏蔽了百度的爬虫抓取，所以在百度很难搜到搭建在GitHub的个人博客，这是一大遗憾。
+Tips: SEO是指按照搜索引擎的算法，提升你的文章在搜索引擎中的自然排名。 2.博客的分类 博客一般可以分为静态博客和动态博客。
+静态博客：一般来说只有前端展示，即直接渲染生成HTML标准的文件呈现给客户端，没有后端数据库支持的博客叫做静态博客。此类博客比较轻量级，部署简单，成本较低，速度也很快，安全性高。
+动态博客：动态指的是前端html和css等展示是通过动态调用再解析而成，不是生成的现成静态文件，且会与后台数据库进行交互，进行数据传递。
+Tips: 通俗理解就是静态博客不需要使用服务器，而动态博客需要使用服务器进行交互。 3.动态博客搭建(halo) 当手中有一台云服务器（或者有一台具有公网IP的电脑），可以使用这种博客搭建方式。下面是以云服务器为例的具体搭建方法。
+SSH远程连接云服务器终端(使用mobaxterm)
+以下是服务器登录后的终端界面
+Welcome to Ubuntu 20.04.5 LTS (GNU/Linux 5.4.0-90-generic x86_64) * Documentation: https://help.ubuntu.com * Management: https://landscape.canonical.com * Support: https://ubuntu.com/advantage * Introducing Expanded Security Maintenance for Applications. Receive updates to over 25,000 software packages with your Ubuntu Pro subscription. Free for personal use. https://ubuntu.com/pro New release '22.04.2 LTS' available. Run 'do-release-upgrade' to upgrade to it. Welcome to Alibaba Cloud Elastic Compute Service !"><meta property="og:type" content="article"><meta property="og:url" content="https://examplesite.com/posts/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2--%E4%BB%A5hugo%E5%92%8Chalo%E4%B8%BA%E4%BE%8B/"><meta property="og:image" content="https://examplesite.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-03-30T15:03:01+08:00"><meta property="article:modified_time" content="2023-03-30T15:03:01+08:00"><meta property="og:site_name" content="LIN's Blog"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://examplesite.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="搭建博客  以hugo和halo为例"><meta name=twitter:description content="1.博客的现状 现在网络上有很多的博客平台，比如CSDN、掘金、简书、博客园、知乎等等。在搜索引擎搜索相关内容时，往往前面几篇都被这几个大平台垄断了，个人博客一般隐藏在后面，如果没有做SEO优化，甚至完全搜不到，而很多优质的文章都藏在个人博客里面，现在很多静态博客都会和Github结合起来搭建，而Github屏蔽了百度的爬虫抓取，所以在百度很难搜到搭建在GitHub的个人博客，这是一大遗憾。
+Tips: SEO是指按照搜索引擎的算法，提升你的文章在搜索引擎中的自然排名。 2.博客的分类 博客一般可以分为静态博客和动态博客。
+静态博客：一般来说只有前端展示，即直接渲染生成HTML标准的文件呈现给客户端，没有后端数据库支持的博客叫做静态博客。此类博客比较轻量级，部署简单，成本较低，速度也很快，安全性高。
+动态博客：动态指的是前端html和css等展示是通过动态调用再解析而成，不是生成的现成静态文件，且会与后台数据库进行交互，进行数据传递。
+Tips: 通俗理解就是静态博客不需要使用服务器，而动态博客需要使用服务器进行交互。 3.动态博客搭建(halo) 当手中有一台云服务器（或者有一台具有公网IP的电脑），可以使用这种博客搭建方式。下面是以云服务器为例的具体搭建方法。
+SSH远程连接云服务器终端(使用mobaxterm)
+以下是服务器登录后的终端界面
+Welcome to Ubuntu 20.04.5 LTS (GNU/Linux 5.4.0-90-generic x86_64) * Documentation: https://help.ubuntu.com * Management: https://landscape.canonical.com * Support: https://ubuntu.com/advantage * Introducing Expanded Security Maintenance for Applications. Receive updates to over 25,000 software packages with your Ubuntu Pro subscription. Free for personal use. https://ubuntu.com/pro New release '22.04.2 LTS' available. Run 'do-release-upgrade' to upgrade to it. Welcome to Alibaba Cloud Elastic Compute Service !"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://examplesite.com/posts/"},{"@type":"ListItem","position":2,"name":"搭建博客  以hugo和halo为例","item":"https://examplesite.com/posts/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2--%E4%BB%A5hugo%E5%92%8Chalo%E4%B8%BA%E4%BE%8B/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"搭建博客  以hugo和halo为例","name":"搭建博客  以hugo和halo为例","description":"1.博客的现状 现在网络上有很多的博客平台，比如CSDN、掘金、简书、博客园、知乎等等。在搜索引擎搜索相关内容时，往往前面几篇都被这几个大平台垄断了，个人博客一般隐藏在后面，如果没有做SEO优化，甚至完全搜不到，而很多优质的文章都藏在个人博客里面，现在很多静态博客都会和Github结合起来搭建，而Github屏蔽了百度的爬虫抓取，所以在百度很难搜到搭建在GitHub的个人博客，这是一大遗憾。\nTips: SEO是指按照搜索引擎的算法，提升你的文章在搜索引擎中的自然排名。 2.博客的分类 博客一般可以分为静态博客和动态博客。\n静态博客：一般来说只有前端展示，即直接渲染生成HTML标准的文件呈现给客户端，没有后端数据库支持的博客叫做静态博客。此类博客比较轻量级，部署简单，成本较低，速度也很快，安全性高。\n动态博客：动态指的是前端html和css等展示是通过动态调用再解析而成，不是生成的现成静态文件，且会与后台数据库进行交互，进行数据传递。\nTips: 通俗理解就是静态博客不需要使用服务器，而动态博客需要使用服务器进行交互。 3.动态博客搭建(halo) 当手中有一台云服务器（或者有一台具有公网IP的电脑），可以使用这种博客搭建方式。下面是以云服务器为例的具体搭建方法。\nSSH远程连接云服务器终端(使用mobaxterm)\n以下是服务器登录后的终端界面\nWelcome to Ubuntu 20.04.5 LTS (GNU/Linux 5.4.0-90-generic x86_64) * Documentation: https://help.ubuntu.com * Management: https://landscape.canonical.com * Support: https://ubuntu.com/advantage * Introducing Expanded Security Maintenance for Applications. Receive updates to over 25,000 software packages with your Ubuntu Pro subscription. Free for personal use. https://ubuntu.com/pro New release \u0026#39;22.04.2 LTS\u0026#39; available. Run \u0026#39;do-release-upgrade\u0026#39; to upgrade to it. Welcome to Alibaba Cloud Elastic Compute Service !","keywords":["网站相关"],"articleBody":"1.博客的现状 现在网络上有很多的博客平台，比如CSDN、掘金、简书、博客园、知乎等等。在搜索引擎搜索相关内容时，往往前面几篇都被这几个大平台垄断了，个人博客一般隐藏在后面，如果没有做SEO优化，甚至完全搜不到，而很多优质的文章都藏在个人博客里面，现在很多静态博客都会和Github结合起来搭建，而Github屏蔽了百度的爬虫抓取，所以在百度很难搜到搭建在GitHub的个人博客，这是一大遗憾。\nTips: SEO是指按照搜索引擎的算法，提升你的文章在搜索引擎中的自然排名。 2.博客的分类 博客一般可以分为静态博客和动态博客。\n静态博客：一般来说只有前端展示，即直接渲染生成HTML标准的文件呈现给客户端，没有后端数据库支持的博客叫做静态博客。此类博客比较轻量级，部署简单，成本较低，速度也很快，安全性高。\n动态博客：动态指的是前端html和css等展示是通过动态调用再解析而成，不是生成的现成静态文件，且会与后台数据库进行交互，进行数据传递。\nTips: 通俗理解就是静态博客不需要使用服务器，而动态博客需要使用服务器进行交互。 3.动态博客搭建(halo) 当手中有一台云服务器（或者有一台具有公网IP的电脑），可以使用这种博客搭建方式。下面是以云服务器为例的具体搭建方法。\nSSH远程连接云服务器终端(使用mobaxterm)\n以下是服务器登录后的终端界面\nWelcome to Ubuntu 20.04.5 LTS (GNU/Linux 5.4.0-90-generic x86_64) * Documentation: https://help.ubuntu.com * Management: https://landscape.canonical.com * Support: https://ubuntu.com/advantage * Introducing Expanded Security Maintenance for Applications. Receive updates to over 25,000 software packages with your Ubuntu Pro subscription. Free for personal use. https://ubuntu.com/pro New release '22.04.2 LTS' available. Run 'do-release-upgrade' to upgrade to it. Welcome to Alibaba Cloud Elastic Compute Service ! Last login: Fri Mar 31 13:44:30 2023 from 223.112.6.226 lin@LIN:~$ 查看halo博客系统的官方文档（使用 Docker Compose 部署）\n进入halo官网，可以基本上了解部署过程，由于halo博客系统的更新，halo 2.0 的底层架构变动，无法兼容 1.x 的数据，使用尽量使用新版的halo系统。\n官方提供了三种部署方式，即Docker、Docker Compose以及1Panel。这三种方式都不复杂,其中1Panel部署是刚刚出的，最为简单，这里就不做过多介绍，可以直接去halo官网查看教程直接部署。这里我们选择使用Docker Compose。\n安装Docker以及Docker Compose\n这个直接参考Docker的官方文档，找到服务器系统对应的安装教程即可。\n创建halo博客的文件路径\n在云服务器建立存放halo博客的一个目录文件，halo博客所产生的数据存放在该目录下。\nmkdir ~/halo \u0026\u0026 cd ~/halo #这里将halo目录建在了当前用户的目录下，并且进入了halo目录下 创建docker-compose.yaml\n在halo目录下新建一个配置文件为docker-compose.yaml，该文件用于配置应用程序需要的所有服务。然后，使用一个命令，就可以从 YML 文件配置中创建并启动所有服务。\n配置docker-compose.yaml\nhalo提供了三种实例模式，分别为Halo + PostgreSQL、Halo + MySQL和Halo + H2 数据库。这里为了方便演示使用H2数据库。文件具体配置如下。\nversion: \"3\" services: halo: image: halohub/halo:2.4.0 container_name: halo restart: on-failure:3 volumes: - ./:/root/.halo2 ports: - \"8090:8090\" healthcheck: test: [\"CMD\", \"curl\", \"-f\", \"http://localhost:8090/actuator/health/readiness\"] interval: 30s timeout: 5s retries: 5 start_period: 30s command: # 外部访问地址，请根据实际需要修改 - --halo.external-url=http://localhost:8090/ # 初始化的超级管理员用户名 - --halo.security.initializer.superadminusername=admin # 初始化的超级管理员密码 - --halo.security.initializer.superadminpassword=P@88w0rd 放行端口号\n通过刚才的配置文件可知，halo使用的端口为8090，云服务器需要放行8090端口(当然，这个端口可以在配置文件里进行修改)。端口放行的过程在云服务器的控制台界面进行修改即可。\n启动 Halo 服务\n当halo系统配置完毕，端口放行成功，就可以在终端启动halo服务，官网教程里缺了管理员执行权限，需要进行修改。\nsudo docker-compose up -d # docker 的服务是在后台运行的，通过 -d 指定容器的运行模式 以下是容器信息。\nlin@LIN:~/halo$ sudo docker ps CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES eb2c5f823445 halohub/halo \"/bin/sh -c 'java -X…\" 11 days ago Up 14 minutes (unhealthy) 0.0.0.0:8090-\u003e8090/tcp, :::8090-\u003e8090/tcp halo lin@LIN:~/halo$ 博客界面访问如下（还挺好看，嘿嘿）\n登录博客系统并进行个性化配置\nhalo博客的后台管理系统简单易用，在docker-compose.yaml中有管理员的登录账号以及对应密码。写博客文章直接点击对应按钮即可。截图如下。\n此外，还可以进行主题配置，选择你喜欢的主题（halo有好多好看炫酷的主题~），配置界面如下。\n好的，关于halo博客的搭建，就介绍到这里。\nTips: SSH是一种网络协议，用于计算机之间的加密登录。 mobaxterm是一款终端工具，用于远程控制云服务器。 halo官方文档(https://docs.halo.run/getting-started/install/docker-compose/) Docker是一个开源的应用容器引擎，可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的Linux机器上，也可以实现虚拟化。 Compose 是用于定义和运行多容器 Docker 应用程序的工具。通过 Compose，可以使用 YML 文件来配置应用程序需要的所有服务。然后，使用一个命令，就可以从 YML 文件配置中创建并启动所有服务。 安全组是一种虚拟防火墙，能够控制ECS实例的出入站流量。可以让用户从端口、IP的维度来筛选对应服务器的访问者，从而形成一个云上的安全域。 4.静态博客搭建(hugo) 通过搭建动态博客需要使用云服务器或者是具有公网IP的主机，如果没有这些资源的话就不容易搭建一个动态博客，又或者是服务器到期需要对博客文件进行迁移，这是很不方便的。所以笔者使用的是静态博客，如今比较热门的是hexo和hugo博客生成器，这里不讨论其实现的原理，理论上hugo的博客生成效率更高，调试也更方便，并且相对于hexo依赖Node.js环境，hugo仅需要一个二进制文件hugo(hugo.exe)即可轻松生成静态页面。当然，这两者都需要使用git将生成的静态页面上传到GitHub（当然，也可以部署到自己的服务器上，此时可以不用git，部署到GitHub的好处就是省了买服务器的钱），下面是搭建hugo博客的过程。\n查看hugo中文文档\n由文档可知，hugo使用只需要下载hugo的二进制文件即可使用。鉴于笔者的电脑是Windows系统，同时为了兼容更多hugo主题,笔者选择的发行包是hugo_extended_0.111.3_windows-amd64，下载完成之后，将压缩包解压即可，建议重命名为hugo。同时为实现博客编写的便携化（比如在不同电脑环境下，只通过插入U盘就可以编写并上传更新博客），笔者就不设置环境变量了，直接在hugo文件夹下通过相对路径进行操作。\n下载git\n直接下载即可，选择默认配置。\n创建博客文件目录\n在解压并且重新命名为hugo之后，文件夹下有三个文件，分别是hugo.exe、LICENSE和README.md。其中hugo.exe是核心文件，LICENSE是许可证，README.md对hugo进行了介绍以及使用方法。通过hugo的getting-started，在hugo目录下执行以下命令即可创建博客文件目录。\nDell@DESKTOP-22JGA5Q MINGW64 /h/hugo $ ./hugo.exe new site blog_text Congratulations! Your new Hugo site is created in H:\\hugo\\blog_text. Just a few more steps and you're ready to go: 1. Download a theme into the same-named folder. Choose a theme from https://themes.gohugo.io/ or create your own with the \"hugo new theme \" command. 2. Perhaps you want to add some content. You can add single files with \"hugo new \\.\". 3. Start the built-in live server via \"hugo server\". Visit https://gohugo.io/ for quickstart guide and full documentation. 此时进入到生成的博客目录，列举文件和文件夹如下。\nDell@DESKTOP-22JGA5Q MINGW64 /h/hugo $ cd blog_text/ Dell@DESKTOP-22JGA5Q MINGW64 /h/hugo/blog_text $ ls archetypes/ config.toml data/ public/ themes/ assets/ content/ layouts/ static/ 其中config.toml是配置文件，之后需要对其进行博客的配置。public是hugo生成的静态页面的存储目录。themes存放主题文件。content存放博客文章。\n下载hugo主题包\nhugo和hexo一样，有许多的网站主题可以选择。可以进入hugo主题页进行查看，笔者选择了hermit主题，直接在生成的博客目录下的themes目录下打开git bash，并将源码克隆到本地，过程如下。\n$ cd themes/ Dell@DESKTOP-22JGA5Q MINGW64 /h/hugo/blog_text/themes $ git clone https://github.com/Track3/hermit.git Cloning into 'hermit'... remote: Enumerating objects: 787, done. remote: Total 787 (delta 0), reused 0 (delta 0), pack-reused 787 Receiving objects: 100% (787/787), 461.32 KiB | 476.00 KiB/s, done. Resolving deltas: 100% (347/347), done. Checking out files: 100% (60/60), done. 配置config.toml文件\nhermit主题下有一个示例网站，其中有一个模板配置文件，用该文件将博客顶层目录下的config.toml覆盖。下面是模板配置文件的具体内容。\nbaseURL = \"https://example.com\" languageCode = \"en-us\" defaultContentLanguage = \"en\" title = \"Hugo Hermit\" theme = \"hermit\" # enableGitInfo = true pygmentsCodefences = true pygmentsUseClasses = true # hasCJKLanguage = true # If Chinese/Japanese/Korean is your main content language, enable this to make wordCount works right. rssLimit = 10 # Maximum number of items in the RSS feed. copyright = \"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.\" # This message is only used by the RSS template. enableEmoji = true # Shorthand emojis in content files - https://gohugo.io/functions/emojify/ # googleAnalytics = \"UA-123-45\" # disqusShortname = \"yourdiscussshortname\" [author] name = \"John Doe\" [blackfriday] # hrefTargetBlank = true # noreferrerLinks = true # nofollowLinks = true [taxonomies] tag = \"tags\" # Categories are disabled by default. [params] dateform = \"Jan 2, 2006\" dateformShort = \"Jan 2\" dateformNum = \"2006-01-02\" dateformNumTime = \"2006-01-02 15:04 -0700\" # Metadata mostly used in document's head # description = \"\" # images = [\"\"] themeColor = \"#494f5c\" homeSubtitle = \"A minimal and fast theme for Hugo.\" footerCopyright = ' \u0026#183; CC BY-NC 4.0' # bgImg = \"\" # Homepage background-image URL # Prefix of link to the git commit detail page. GitInfo must be enabled. # gitUrl = \"https://github.com/username/repository/commit/\" # Toggling this option needs to rebuild SCSS, requires Hugo extended version justifyContent = false # Set \"text-align: justify\" to `.content`. relatedPosts = false # Add a related content section to all single posts page code_copy_button = true # Turn on/off the code-copy-button for code-fields # Add custom css # customCSS = [\"css/foo.css\", \"css/bar.css\"] # Social Icons # Check https://github.com/Track3/hermit#social-icons for more info. [[params.social]] name = \"twitter\" url = \"https://twitter.com/\" [[params.social]] name = \"instagram\" url = \"https://instagram.com/\" [[params.social]] name = \"github\" url = \"https://github.com/\" [menu] [[menu.main]] name = \"Posts\" url = \"posts/\" weight = 10 [[menu.main]] name = \"About\" url = \"about-hugo/\" weight = 20 参照对应注释进行个性化修改即可。\n博客本地调试\n当配置成功之后，可以在本地进行预览博客的效果，只需在博客目录执行hugo的server指令即可。过程如下。\nDell@DESKTOP-22JGA5Q MINGW64 /h/hugo/blog_text $ ../hugo.exe server Start building sites … hugo v0.111.3-5d4eb5154e1fed125ca8e9b5a0315c4180dab192+extended windows/amd64 BuildDate=2023-03-12T11:40:50Z VendorInfo=gohugoio | EN -------------------+----- Pages | 5 Paginator pages | 0 Non-page files | 0 Static files | 10 Processed images | 0 Aliases | 0 Sitemaps | 1 Cleaned | 0 Built in 173 ms Watching for changes in H:\\hugo\\blog_text\\{archetypes,assets,content,data,layouts,static,themes} Watching for config changes in H:\\hugo\\blog_text\\config.toml Environment: \"development\" Serving pages from memory Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender Web Server is available at http://localhost:1313/ (bind address 127.0.0.1) Press Ctrl+C to stop 按照提示，在http://localhost:1313/打开即可预览。截图如下。\n生成静态页面\n静态博客需要的是静态页面，这一过程是通过hugo进行构建的，直接执行指令如下。\nDell@DESKTOP-22JGA5Q MINGW64 /h/hugo/blog_text $ ../hugo.exe Start building sites … hugo v0.111.3-5d4eb5154e1fed125ca8e9b5a0315c4180dab192+extended windows/amd64 BuildDate=2023-03-12T11:40:50Z VendorInfo=gohugoio | EN -------------------+----- Pages | 5 Paginator pages | 0 Non-page files | 0 Static files | 10 Processed images | 0 Aliases | 0 Sitemaps | 1 Cleaned | 0 Total in 438 ms 此时博客的静态页面构建成功，其对应文件存储于public目录下。具体文件列举如下。\nDell@DESKTOP-22JGA5Q MINGW64 /h/hugo/blog_text/public $ ls 404.html favicon.ico mstile-150x150.png android-chrome-192x192.png favicon-16x16.png safari-pinned-tab.svg android-chrome-384x384.png favicon-32x32.png site.webmanifest apple-touch-icon.png index.html sitemap.xml browserconfig.xml index.xml tags/ css/ GitHub部署\n参照hugo中文文档，首先在GitHub上创建一个Repository，命名为：name.github.io （name替换为你的github用户名）。并通过git将public目录下的文件直接同步到对应仓库即可。此时就可以通过name.github.io这个网址访问到所建的博客了。\n5.参考资料 https://www.gohugo.org/ https://gohugo.io/getting-started/ https://docs.halo.run/ https://zak.ee/writing/2018/hugo-theme-hermit/ https://www.sulvblog.cn/posts/blog/how_to_write_a_blog/ https://www.gohugo.org/post/coderzh-hugo/ https://sspai.com/post/59904#! https://www.runoob.com/docker/docker-tutorial.html https://zhuanlan.zhihu.com/p/323322650 https://zhuanlan.zhihu.com/p/56341917 https://zhuanlan.zhihu.com/p/210428775 https://cloud.tencent.com/developer/article/1360110 ","wordCount":"898","inLanguage":"en","datePublished":"2023-03-30T15:03:01+08:00","dateModified":"2023-03-30T15:03:01+08:00","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://examplesite.com/posts/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2--%E4%BB%A5hugo%E5%92%8Chalo%E4%B8%BA%E4%BE%8B/"},"publisher":{"@type":"Organization","name":"LIN's Blog","logo":{"@type":"ImageObject","url":"https://avatars.githubusercontent.com/u/61782894?v=4"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://examplesite.com/ accesskey=h title="我的主页 (Alt + H)">我的主页</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://examplesite.com/posts/ title=文章><span>文章</span></a></li><li><a href=https://examplesite.com/tags title=分类><span>分类</span></a></li><li><a href=https://examplesite.com/friends title=友链><span>友链</span></a></li><li><a href=https://examplesite.com/introduction title=关于><span>关于</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://examplesite.com/>Home</a>&nbsp;»&nbsp;<a href=https://examplesite.com/posts/>Posts</a></div><h1 class=post-title>搭建博客 以hugo和halo为例</h1><div class=post-meta><span title='2023-03-30 15:03:01 +0800 CST'>March 30, 2023</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;898 words&nbsp;·&nbsp;Me</div></header><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><nav id=TableOfContents><ul><li><a href=#1博客的现状>1.博客的现状</a></li><li><a href=#2博客的分类>2.博客的分类</a></li><li><a href=#3动态博客搭建halo>3.动态博客搭建(halo)</a></li><li><a href=#4静态博客搭建hugo>4.静态博客搭建(hugo)</a></li><li><a href=#5参考资料>5.参考资料</a></li></ul></nav></div></details></div><div class=post-content><h2 id=1博客的现状>1.博客的现状<a hidden class=anchor aria-hidden=true href=#1博客的现状>#</a></h2><p>现在网络上有很多的博客平台，比如CSDN、掘金、简书、博客园、知乎等等。在搜索引擎搜索相关内容时，往往前面几篇都被这几个大平台垄断了，个人博客一般隐藏在后面，如果没有做SEO优化，甚至完全搜不到，而很多优质的文章都藏在个人博客里面，现在很多静态博客都会和Github结合起来搭建，而Github屏蔽了百度的爬虫抓取，所以在百度很难搜到搭建在GitHub的个人博客，这是一大遗憾。</p><pre tabindex=0><code>Tips:
+SEO是指按照搜索引擎的算法，提升你的文章在搜索引擎中的自然排名。
+</code></pre><h2 id=2博客的分类>2.博客的分类<a hidden class=anchor aria-hidden=true href=#2博客的分类>#</a></h2><p>博客一般可以分为静态博客和动态博客。</p><p>静态博客：一般来说只有前端展示，即直接渲染生成HTML标准的文件呈现给客户端，没有后端数据库支持的博客叫做静态博客。此类博客比较轻量级，部署简单，成本较低，速度也很快，安全性高。</p><p>动态博客：动态指的是前端html和css等展示是通过动态调用再解析而成，不是生成的现成静态文件，且会与后台数据库进行交互，进行数据传递。</p><pre tabindex=0><code>Tips:
+通俗理解就是静态博客不需要使用服务器，而动态博客需要使用服务器进行交互。
+</code></pre><h2 id=3动态博客搭建halo>3.动态博客搭建(halo)<a hidden class=anchor aria-hidden=true href=#3动态博客搭建halo>#</a></h2><p>当手中有一台云服务器（或者有一台具有公网IP的电脑），可以使用这种博客搭建方式。下面是以云服务器为例的具体搭建方法。</p><ol><li><p>SSH远程连接云服务器终端(使用mobaxterm)</p><p>以下是服务器登录后的终端界面</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>Welcome to Ubuntu 20.04.5 LTS <span class=o>(</span>GNU/Linux 5.4.0-90-generic x86_64<span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> * Documentation:  https://help.ubuntu.com
+</span></span><span class=line><span class=cl> * Management:     https://landscape.canonical.com
+</span></span><span class=line><span class=cl> * Support:        https://ubuntu.com/advantage
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> * Introducing Expanded Security Maintenance <span class=k>for</span> Applications.
+</span></span><span class=line><span class=cl>   Receive updates to over 25,000 software packages with your
+</span></span><span class=line><span class=cl>   Ubuntu Pro subscription. Free <span class=k>for</span> personal use.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>     https://ubuntu.com/pro
+</span></span><span class=line><span class=cl>New release <span class=s1>&#39;22.04.2 LTS&#39;</span> available.
+</span></span><span class=line><span class=cl>Run <span class=s1>&#39;do-release-upgrade&#39;</span> to upgrade to it.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Welcome to Alibaba Cloud Elastic Compute Service !
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Last login: Fri Mar <span class=m>31</span> 13:44:30 <span class=m>2023</span> from 223.112.6.226
+</span></span><span class=line><span class=cl>lin@LIN:~$
+</span></span></code></pre></div></li><li><p>查看halo博客系统的官方文档（使用 Docker Compose 部署）</p><p>进入halo官网，可以基本上了解部署过程，由于halo博客系统的更新，halo 2.0 的底层架构变动，无法兼容 1.x 的数据，使用尽量使用新版的halo系统。</p><p>官方提供了三种部署方式，即Docker、Docker Compose以及1Panel。这三种方式都不复杂,其中1Panel部署是刚刚出的，最为简单，这里就不做过多介绍，可以直接去halo官网查看教程直接部署。这里我们选择使用Docker Compose。</p></li><li><p>安装Docker以及Docker Compose</p><p>这个直接参考Docker的官方文档，找到服务器系统对应的安装教程即可。</p></li><li><p>创建halo博客的文件路径</p><p>在云服务器建立存放halo博客的一个目录文件，halo博客所产生的数据存放在该目录下。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir ~/halo <span class=o>&amp;&amp;</span> <span class=nb>cd</span> ~/halo
+</span></span><span class=line><span class=cl><span class=c1>#这里将halo目录建在了当前用户的目录下，并且进入了halo目录下</span>
+</span></span></code></pre></div></li><li><p>创建docker-compose.yaml</p><p>在halo目录下新建一个配置文件为docker-compose.yaml，该文件用于配置应用程序需要的所有服务。然后，使用一个命令，就可以从 YML 文件配置中创建并启动所有服务。</p></li><li><p>配置docker-compose.yaml</p><p>halo提供了三种实例模式，分别为Halo + PostgreSQL、Halo + MySQL和Halo + H2 数据库。这里为了方便演示使用H2数据库。文件具体配置如下。</p><pre tabindex=0><code>version: &#34;3&#34;
+
+services:
+  halo:
+    image: halohub/halo:2.4.0
+    container_name: halo
+    restart: on-failure:3
+    volumes:
+      - ./:/root/.halo2
+    ports:
+      - &#34;8090:8090&#34;
+    healthcheck:
+      test: [&#34;CMD&#34;, &#34;curl&#34;, &#34;-f&#34;, &#34;http://localhost:8090/actuator/health/readiness&#34;]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s          
+    command:
+      # 外部访问地址，请根据实际需要修改
+      - --halo.external-url=http://localhost:8090/
+      # 初始化的超级管理员用户名
+      - --halo.security.initializer.superadminusername=admin
+      # 初始化的超级管理员密码
+      - --halo.security.initializer.superadminpassword=P@88w0rd
+</code></pre></li><li><p>放行端口号</p><p>通过刚才的配置文件可知，halo使用的端口为8090，云服务器需要放行8090端口(当然，这个端口可以在配置文件里进行修改)。端口放行的过程在云服务器的控制台界面进行修改即可。</p></li><li><p>启动 Halo 服务</p><p>当halo系统配置完毕，端口放行成功，就可以在终端启动halo服务，官网教程里缺了管理员执行权限，需要进行修改。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo docker-compose up -d
+</span></span><span class=line><span class=cl><span class=c1># docker 的服务是在后台运行的，通过 -d 指定容器的运行模式</span>
+</span></span></code></pre></div><p>以下是容器信息。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>lin@LIN:~/halo$ sudo docker ps
+</span></span><span class=line><span class=cl>CONTAINER ID   IMAGE          COMMAND                  CREATED       STATUS                      PORTS                                       NAMES
+</span></span><span class=line><span class=cl>eb2c5f823445   halohub/halo   <span class=s2>&#34;/bin/sh -c &#39;java -X…&#34;</span>   <span class=m>11</span> days ago   Up <span class=m>14</span> minutes <span class=o>(</span>unhealthy<span class=o>)</span>   0.0.0.0:8090-&gt;8090/tcp, :::8090-&gt;8090/tcp   halo
+</span></span><span class=line><span class=cl>lin@LIN:~/halo$
+</span></span></code></pre></div><p>博客界面访问如下（还挺好看，嘿嘿）</p><p><img loading=lazy src=https://raw.githubusercontent.com/2651350543/repo_md/master/2023/03/upgit_20230331_1680245021.png alt=image-20230331144341005></p></li><li><p>登录博客系统并进行个性化配置</p><p>halo博客的后台管理系统简单易用，在docker-compose.yaml中有管理员的登录账号以及对应密码。写博客文章直接点击对应按钮即可。截图如下。</p><p><img loading=lazy src=https://raw.githubusercontent.com/2651350543/repo_md/master/2023/03/upgit_20230331_1680246025.png alt=image-20230331150025635></p><p>此外，还可以进行主题配置，选择你喜欢的主题（halo有好多好看炫酷的主题~），配置界面如下。</p><p><img loading=lazy src=https://raw.githubusercontent.com/2651350543/repo_md/master/2023/03/upgit_20230331_1680246111.png alt=image-20230331150151348></p><p>好的，关于halo博客的搭建，就介绍到这里。</p></li></ol><pre tabindex=0><code>Tips:
+SSH是一种网络协议，用于计算机之间的加密登录。
+
+mobaxterm是一款终端工具，用于远程控制云服务器。
+
+halo官方文档(https://docs.halo.run/getting-started/install/docker-compose/)
+
+Docker是一个开源的应用容器引擎，可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的Linux机器上，也可以实现虚拟化。
+
+Compose 是用于定义和运行多容器 Docker 应用程序的工具。通过 Compose，可以使用 YML 文件来配置应用程序需要的所有服务。然后，使用一个命令，就可以从 YML 文件配置中创建并启动所有服务。
+
+安全组是一种虚拟防火墙，能够控制ECS实例的出入站流量。可以让用户从端口、IP的维度来筛选对应服务器的访问者，从而形成一个云上的安全域。
+</code></pre><h2 id=4静态博客搭建hugo>4.静态博客搭建(hugo)<a hidden class=anchor aria-hidden=true href=#4静态博客搭建hugo>#</a></h2><p>通过搭建动态博客需要使用云服务器或者是具有公网IP的主机，如果没有这些资源的话就不容易搭建一个动态博客，又或者是服务器到期需要对博客文件进行迁移，这是很不方便的。所以笔者使用的是静态博客，如今比较热门的是hexo和hugo博客生成器，这里不讨论其实现的原理，理论上hugo的博客生成效率更高，调试也更方便，并且相对于hexo依赖Node.js环境，hugo仅需要一个二进制文件hugo(hugo.exe)即可轻松生成静态页面。当然，这两者都需要使用git将生成的静态页面上传到GitHub（当然，也可以部署到自己的服务器上，此时可以不用git，部署到GitHub的好处就是省了买服务器的钱），下面是搭建hugo博客的过程。</p><ol><li><p>查看hugo中文文档</p><p>由文档可知，hugo使用只需要下载hugo的二进制文件即可使用。鉴于笔者的电脑是Windows系统，同时为了兼容更多hugo主题,笔者选择的发行包是<a href=https://github.com/gohugoio/hugo/releases/download/v0.111.3/hugo_extended_0.111.3_windows-amd64.zip>hugo_extended_0.111.3_windows-amd64</a>，下载完成之后，将压缩包解压即可，建议重命名为hugo。同时为实现博客编写的便携化（比如在不同电脑环境下，只通过插入U盘就可以编写并上传更新博客），笔者就不设置环境变量了，直接在hugo文件夹下通过相对路径进行操作。</p></li><li><p>下载git</p><p>直接下载即可，选择默认配置。</p></li><li><p>创建博客文件目录</p><p>在解压并且重新命名为hugo之后，文件夹下有三个文件，分别是hugo.exe、LICENSE和README.md。其中hugo.exe是核心文件，LICENSE是许可证，README.md对hugo进行了介绍以及使用方法。通过hugo的getting-started，在hugo目录下执行以下命令即可创建博客文件目录。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>Dell@DESKTOP-22JGA5Q MINGW64 /h/hugo
+</span></span><span class=line><span class=cl>$ ./hugo.exe new site blog_text
+</span></span><span class=line><span class=cl>Congratulations! Your new Hugo site is created in H:<span class=se>\h</span>ugo<span class=se>\b</span>log_text.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Just a few more steps and you<span class=err>&#39;</span>re ready to go:
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>1. Download a theme into the same-named folder.
+</span></span><span class=line><span class=cl>   Choose a theme from https://themes.gohugo.io/ or
+</span></span><span class=line><span class=cl>   create your own with the <span class=s2>&#34;hugo new theme &lt;THEMENAME&gt;&#34;</span> command.
+</span></span><span class=line><span class=cl>2. Perhaps you want to add some content. You can add single files
+</span></span><span class=line><span class=cl>   with <span class=s2>&#34;hugo new &lt;SECTIONNAME&gt;\&lt;FILENAME&gt;.&lt;FORMAT&gt;&#34;</span>.
+</span></span><span class=line><span class=cl>3. Start the built-in live server via <span class=s2>&#34;hugo server&#34;</span>.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Visit https://gohugo.io/ <span class=k>for</span> quickstart guide and full documentation.
+</span></span></code></pre></div><p>此时进入到生成的博客目录，列举文件和文件夹如下。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>Dell@DESKTOP-22JGA5Q MINGW64 /h/hugo
+</span></span><span class=line><span class=cl>$ <span class=nb>cd</span> blog_text/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Dell@DESKTOP-22JGA5Q MINGW64 /h/hugo/blog_text
+</span></span><span class=line><span class=cl>$ ls
+</span></span><span class=line><span class=cl>archetypes/  config.toml  data/     public/  themes/
+</span></span><span class=line><span class=cl>assets/      content/     layouts/  static/
+</span></span></code></pre></div><p>其中config.toml是配置文件，之后需要对其进行博客的配置。public是hugo生成的静态页面的存储目录。themes存放主题文件。content存放博客文章。</p></li><li><p>下载hugo主题包</p><p>hugo和hexo一样，有许多的网站主题可以选择。可以进入<a href=https://themes.gohugo.io/>hugo主题页</a>进行查看，笔者选择了<a href=https://github.com/Track3/hermit>hermit</a>主题，直接在生成的博客目录下的themes目录下打开git bash，并将源码克隆到本地，过程如下。</p><pre tabindex=0><code>$ cd themes/
+
+Dell@DESKTOP-22JGA5Q MINGW64 /h/hugo/blog_text/themes
+$ git clone https://github.com/Track3/hermit.git
+Cloning into &#39;hermit&#39;...
+remote: Enumerating objects: 787, done.
+remote: Total 787 (delta 0), reused 0 (delta 0), pack-reused 787
+Receiving objects: 100% (787/787), 461.32 KiB | 476.00 KiB/s, done.
+Resolving deltas: 100% (347/347), done.
+Checking out files: 100% (60/60), done.
+</code></pre></li><li><p>配置config.toml文件</p><p>hermit主题下有一个示例网站，其中有一个模板配置文件，用该文件将博客顶层目录下的config.toml覆盖。下面是模板配置文件的具体内容。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=line><span class=cl><span class=nx>baseURL</span> <span class=p>=</span> <span class=s2>&#34;https://example.com&#34;</span>
+</span></span><span class=line><span class=cl><span class=nx>languageCode</span> <span class=p>=</span> <span class=s2>&#34;en-us&#34;</span>
+</span></span><span class=line><span class=cl><span class=nx>defaultContentLanguage</span> <span class=p>=</span> <span class=s2>&#34;en&#34;</span>
+</span></span><span class=line><span class=cl><span class=nx>title</span> <span class=p>=</span> <span class=s2>&#34;Hugo Hermit&#34;</span>
+</span></span><span class=line><span class=cl><span class=nx>theme</span> <span class=p>=</span> <span class=s2>&#34;hermit&#34;</span>
+</span></span><span class=line><span class=cl><span class=c># enableGitInfo = true</span>
+</span></span><span class=line><span class=cl><span class=nx>pygmentsCodefences</span>  <span class=p>=</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl><span class=nx>pygmentsUseClasses</span>  <span class=p>=</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl><span class=c># hasCJKLanguage = true  # If Chinese/Japanese/Korean is your main content language, enable this to make wordCount works right.</span>
+</span></span><span class=line><span class=cl><span class=nx>rssLimit</span> <span class=p>=</span> <span class=mi>10</span>  <span class=c># Maximum number of items in the RSS feed.</span>
+</span></span><span class=line><span class=cl><span class=nx>copyright</span> <span class=p>=</span> <span class=s2>&#34;This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.&#34;</span> <span class=c># This message is only used by the RSS template.</span>
+</span></span><span class=line><span class=cl><span class=nx>enableEmoji</span> <span class=p>=</span> <span class=kc>true</span>  <span class=c># Shorthand emojis in content files - https://gohugo.io/functions/emojify/</span>
+</span></span><span class=line><span class=cl><span class=c># googleAnalytics = &#34;UA-123-45&#34;</span>
+</span></span><span class=line><span class=cl><span class=c># disqusShortname = &#34;yourdiscussshortname&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>author</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;John Doe&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>blackfriday</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=c># hrefTargetBlank = true</span>
+</span></span><span class=line><span class=cl>  <span class=c># noreferrerLinks = true</span>
+</span></span><span class=line><span class=cl>  <span class=c># nofollowLinks = true</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>taxonomies</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=nx>tag</span> <span class=p>=</span> <span class=s2>&#34;tags&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=c># Categories are disabled by default.</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>params</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=nx>dateform</span>        <span class=p>=</span> <span class=s2>&#34;Jan 2, 2006&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>dateformShort</span>   <span class=p>=</span> <span class=s2>&#34;Jan 2&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>dateformNum</span>     <span class=p>=</span> <span class=s2>&#34;2006-01-02&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>dateformNumTime</span> <span class=p>=</span> <span class=s2>&#34;2006-01-02 15:04 -0700&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c># Metadata mostly used in document&#39;s head</span>
+</span></span><span class=line><span class=cl>  <span class=c># description = &#34;&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=c># images = [&#34;&#34;]</span>
+</span></span><span class=line><span class=cl>  <span class=nx>themeColor</span> <span class=p>=</span> <span class=s2>&#34;#494f5c&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>homeSubtitle</span> <span class=p>=</span> <span class=s2>&#34;A minimal and fast theme for Hugo.&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>footerCopyright</span> <span class=p>=</span> <span class=s1>&#39; &amp;#183; &lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;&#39;</span>
+</span></span><span class=line><span class=cl>  <span class=c># bgImg = &#34;&#34;  # Homepage background-image URL</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c># Prefix of link to the git commit detail page. GitInfo must be enabled.</span>
+</span></span><span class=line><span class=cl>  <span class=c># gitUrl = &#34;https://github.com/username/repository/commit/&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c># Toggling this option needs to rebuild SCSS, requires Hugo extended version</span>
+</span></span><span class=line><span class=cl>  <span class=nx>justifyContent</span> <span class=p>=</span> <span class=kc>false</span>  <span class=c># Set &#34;text-align: justify&#34; to `.content`.</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>relatedPosts</span> <span class=p>=</span> <span class=kc>false</span>  <span class=c># Add a related content section to all single posts page</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>code_copy_button</span> <span class=p>=</span> <span class=kc>true</span> <span class=c># Turn on/off the code-copy-button for code-fields</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c># Add custom css</span>
+</span></span><span class=line><span class=cl>  <span class=c># customCSS = [&#34;css/foo.css&#34;, &#34;css/bar.css&#34;]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c># Social Icons</span>
+</span></span><span class=line><span class=cl>  <span class=c># Check https://github.com/Track3/hermit#social-icons for more info.</span>
+</span></span><span class=line><span class=cl>  <span class=p>[[</span><span class=nx>params</span><span class=p>.</span><span class=nx>social</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl>    <span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;twitter&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;https://twitter.com/&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=p>[[</span><span class=nx>params</span><span class=p>.</span><span class=nx>social</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl>    <span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;instagram&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;https://instagram.com/&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=p>[[</span><span class=nx>params</span><span class=p>.</span><span class=nx>social</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl>    <span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;github&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;https://github.com/&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>menu</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=p>[[</span><span class=nx>menu</span><span class=p>.</span><span class=nx>main</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl>    <span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;Posts&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;posts/&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>weight</span> <span class=p>=</span> <span class=mi>10</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=p>[[</span><span class=nx>menu</span><span class=p>.</span><span class=nx>main</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl>    <span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;About&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;about-hugo/&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>weight</span> <span class=p>=</span> <span class=mi>20</span>
+</span></span></code></pre></div><p>参照对应注释进行个性化修改即可。</p></li><li><p>博客本地调试</p><p>当配置成功之后，可以在本地进行预览博客的效果，只需在博客目录执行hugo的server指令即可。过程如下。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>Dell@DESKTOP-22JGA5Q MINGW64 /h/hugo/blog_text
+</span></span><span class=line><span class=cl>$ ../hugo.exe server
+</span></span><span class=line><span class=cl>Start building sites …
+</span></span><span class=line><span class=cl>hugo v0.111.3-5d4eb5154e1fed125ca8e9b5a0315c4180dab192+extended windows/amd64 <span class=nv>BuildDate</span><span class=o>=</span>2023-03-12T11:40:50Z <span class=nv>VendorInfo</span><span class=o>=</span>gohugoio
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                   <span class=p>|</span> EN
+</span></span><span class=line><span class=cl>-------------------+-----
+</span></span><span class=line><span class=cl>  Pages            <span class=p>|</span>  <span class=m>5</span>
+</span></span><span class=line><span class=cl>  Paginator pages  <span class=p>|</span>  <span class=m>0</span>
+</span></span><span class=line><span class=cl>  Non-page files   <span class=p>|</span>  <span class=m>0</span>
+</span></span><span class=line><span class=cl>  Static files     <span class=p>|</span> <span class=m>10</span>
+</span></span><span class=line><span class=cl>  Processed images <span class=p>|</span>  <span class=m>0</span>
+</span></span><span class=line><span class=cl>  Aliases          <span class=p>|</span>  <span class=m>0</span>
+</span></span><span class=line><span class=cl>  Sitemaps         <span class=p>|</span>  <span class=m>1</span>
+</span></span><span class=line><span class=cl>  Cleaned          <span class=p>|</span>  <span class=m>0</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Built in <span class=m>173</span> ms
+</span></span><span class=line><span class=cl>Watching <span class=k>for</span> changes in H:<span class=se>\h</span>ugo<span class=se>\b</span>log_text<span class=se>\{</span>archetypes,assets,content,data,layouts,static,themes<span class=o>}</span>
+</span></span><span class=line><span class=cl>Watching <span class=k>for</span> config changes in H:<span class=se>\h</span>ugo<span class=se>\b</span>log_text<span class=se>\c</span>onfig.toml
+</span></span><span class=line><span class=cl>Environment: <span class=s2>&#34;development&#34;</span>
+</span></span><span class=line><span class=cl>Serving pages from memory
+</span></span><span class=line><span class=cl>Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+</span></span><span class=line><span class=cl>Web Server is available at http://localhost:1313/ <span class=o>(</span><span class=nb>bind</span> address 127.0.0.1<span class=o>)</span>
+</span></span><span class=line><span class=cl>Press Ctrl+C to stop
+</span></span></code></pre></div><p>按照提示，在http://localhost:1313/打开即可预览。截图如下。</p><p><img loading=lazy src=https://raw.githubusercontent.com/2651350543/repo_md/master/2023/03/upgit_20230331_1680250692.png alt=image-20230331161812319></p></li><li><p>生成静态页面</p><p>静态博客需要的是静态页面，这一过程是通过hugo进行构建的，直接执行指令如下。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>Dell@DESKTOP-22JGA5Q MINGW64 /h/hugo/blog_text
+</span></span><span class=line><span class=cl>$ ../hugo.exe
+</span></span><span class=line><span class=cl>Start building sites …
+</span></span><span class=line><span class=cl>hugo v0.111.3-5d4eb5154e1fed125ca8e9b5a0315c4180dab192+extended windows/amd64 <span class=nv>BuildDate</span><span class=o>=</span>2023-03-12T11:40:50Z <span class=nv>VendorInfo</span><span class=o>=</span>gohugoio
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                   <span class=p>|</span> EN
+</span></span><span class=line><span class=cl>-------------------+-----
+</span></span><span class=line><span class=cl>  Pages            <span class=p>|</span>  <span class=m>5</span>
+</span></span><span class=line><span class=cl>  Paginator pages  <span class=p>|</span>  <span class=m>0</span>
+</span></span><span class=line><span class=cl>  Non-page files   <span class=p>|</span>  <span class=m>0</span>
+</span></span><span class=line><span class=cl>  Static files     <span class=p>|</span> <span class=m>10</span>
+</span></span><span class=line><span class=cl>  Processed images <span class=p>|</span>  <span class=m>0</span>
+</span></span><span class=line><span class=cl>  Aliases          <span class=p>|</span>  <span class=m>0</span>
+</span></span><span class=line><span class=cl>  Sitemaps         <span class=p>|</span>  <span class=m>1</span>
+</span></span><span class=line><span class=cl>  Cleaned          <span class=p>|</span>  <span class=m>0</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Total in <span class=m>438</span> ms
+</span></span></code></pre></div><p>此时博客的静态页面构建成功，其对应文件存储于public目录下。具体文件列举如下。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>Dell@DESKTOP-22JGA5Q MINGW64 /h/hugo/blog_text/public
+</span></span><span class=line><span class=cl>$ ls
+</span></span><span class=line><span class=cl>404.html                    favicon.ico        mstile-150x150.png
+</span></span><span class=line><span class=cl>android-chrome-192x192.png  favicon-16x16.png  safari-pinned-tab.svg
+</span></span><span class=line><span class=cl>android-chrome-384x384.png  favicon-32x32.png  site.webmanifest
+</span></span><span class=line><span class=cl>apple-touch-icon.png        index.html         sitemap.xml
+</span></span><span class=line><span class=cl>browserconfig.xml           index.xml          tags/
+</span></span><span class=line><span class=cl>css/  
+</span></span></code></pre></div></li><li><p>GitHub部署</p><p>参照hugo中文文档，首先在GitHub上创建一个Repository，命名为：name.github.io （name替换为你的github用户名）。并通过git将public目录下的文件直接同步到对应仓库即可。此时就可以通过name.github.io这个网址访问到所建的博客了。</p></li></ol><h2 id=5参考资料>5.参考资料<a hidden class=anchor aria-hidden=true href=#5参考资料>#</a></h2><pre tabindex=0><code>https://www.gohugo.org/
+
+https://gohugo.io/getting-started/
+
+https://docs.halo.run/
+
+https://zak.ee/writing/2018/hugo-theme-hermit/
+
+https://www.sulvblog.cn/posts/blog/how_to_write_a_blog/
+
+https://www.gohugo.org/post/coderzh-hugo/
+
+https://sspai.com/post/59904#!
+
+https://www.runoob.com/docker/docker-tutorial.html
+
+https://zhuanlan.zhihu.com/p/323322650
+
+https://zhuanlan.zhihu.com/p/56341917
+
+https://zhuanlan.zhihu.com/p/210428775
+
+https://cloud.tencent.com/developer/article/1360110
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://examplesite.com/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/>网站相关</a></li></ul><nav class=paginav><a class=prev href=https://examplesite.com/posts/typora%E7%9A%84%E5%9B%BE%E5%BA%8A%E8%AE%BE%E7%BD%AE/><span class=title>« Prev</span><br><span>Typora的图床设置——使用upgit</span></a>
+<a class=next href=https://examplesite.com/posts/helloworld/><span class=title>Next »</span><br><span>HelloWorld</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2023 <a href=https://examplesite.com/>LIN's Blog</a></span>
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

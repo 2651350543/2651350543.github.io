@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>探索发现 on LIN&#39;s Blog</title>
+    <link>https://examplesite.com/tags/%E6%8E%A2%E7%B4%A2%E5%8F%91%E7%8E%B0/</link>
+    <description>Recent content in 探索发现 on LIN&#39;s Blog</description>
+    <image>
+      <title>LIN&#39;s Blog</title>
+      <url>https://examplesite.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://examplesite.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 02 Apr 2023 11:41:38 +0800</lastBuildDate><atom:link href="https://examplesite.com/tags/%E6%8E%A2%E7%B4%A2%E5%8F%91%E7%8E%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Typora的图床设置——使用upgit</title>
+      <link>https://examplesite.com/posts/typora%E7%9A%84%E5%9B%BE%E5%BA%8A%E8%AE%BE%E7%BD%AE/</link>
+      <pubDate>Sun, 02 Apr 2023 11:41:38 +0800</pubDate>
+      
+      <guid>https://examplesite.com/posts/typora%E7%9A%84%E5%9B%BE%E5%BA%8A%E8%AE%BE%E7%BD%AE/</guid>
+      <description>Typora介绍 按照 Typora官网的说法，Typora 是一款Markdown编辑器和阅读器。
+同时，Typora 也在它的网站上贴了许多标签：风格极简 、多种主题 、支持 macOS，Windows及Linux实时预览、 图片与文字、 代码块 、数学公式 、图表目录大纲、文件管理、导入与导出等。
+简单来说，Typora是一款简约功能且强大的编辑器。并且Typora对不熟悉Markdown的小伙伴们十分友好，基本上可以快速上手。\(@^0^@)/
+使用Typora出现的痛点 虽然Typora相比于微软的word有着简单易用、自由度高的优势，但是Typora也有比较烦人的地方。
+假设出现以下场景，你写了一篇图文并茂的文档，这篇文档是需要你在不同设备上进行编辑，又或者是需要给同伴进行查看和修改的（重点是修改，如果只是阅读的话，直接导出成PDF就行了）。这个时候，由于Typora导入图片的默认规则是将图片缓存到本地电脑的某个文件夹下（这个文件夹是确定的），但是当文档传输到另一台电脑上的时候，会缺失图片路径，导致图片无法显示。
+查看Typora的偏好设置，Typora对插入时图片的路径给出了三种方式：指定的本地路径、相对路径以及网络路径。显然当图片在指定的本地路径下不太容易兼容其他电脑环境，图片依然会出现丢失的情况。使用相对路径可以避免图片的丢失，但是这样操作会导致所生成的文档要带一个资源库（Typora给的文件夹名为assets），进行文档传递的时候需要进行打包传输，同时也加大了文件的体积。所以，笔者在此选择了插入图片进行网络路径转换的方式，相比于前两种方式，网络路径既解决了图片资源丢失的问题，也简化了文件的结构（文档只是一份md文件，不需要assets存放图片资源）。
+我的解决方式 再次查看Typora的偏好设置，发现其上传服务主要是PicGo、PicGo-Core和Custom Command。
+查阅PicGo和PicGo-Core的使用文档，发现PicGo是不够轻量化的，大小是119 MB，而且是Electron开发，效率不高，而PicGo-Core是PicGo的核心底层核心组件（上传流程系统），虽然相比PicGo是轻量化的，但是需要nodejs环境，对环境有依赖。所以重点就来到了Custom Command，本着功能需要高内聚、低耦合的目标，笔者找到一款名叫upgit的简洁跨平台，不常驻内存的上传工具。
+参考upgit的说明文档，可以快速上手体验。下面是笔者配置upgit的大致流程。
+下载Release Upgit v0.2.18。
+解压到存放应用的目录（其他位置也行，只要你能找到），重命名文件夹和程序名。
+在程序的同一目录创建 config.toml文件，参考upgit的README.md文档，有示例配置如下。
+# ============================================================================= # UPGIT 配置 # ============================================================================= # 默认上传器 default_uploader = &amp;#34;github&amp;#34; # 上传文件名的格式模板（仅特定上传器适配） # / 目录分隔符, 作用: 是区分目录 # {year} 年份, 例如: 2022 # {month} 月份, 例如: 02 # {day} 天, 例如: 01 # {unix_ts} 时间戳, 例如: 1643617626 # {fname} 原始文件名，如 logo (不含后缀名) # {fname_hash} {fname}的 MD5 散列值 # {ext} 文件后缀名, 例如.</description>
+    </item>
+    
+  </channel>
+</rss>
