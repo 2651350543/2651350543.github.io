@@ -10,7 +10,29 @@
       <link>https://2651350543.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 04 Apr 2023 20:46:54 +0800</lastBuildDate><atom:link href="https://2651350543.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Apr 2023 11:38:02 +0800</lastBuildDate><atom:link href="https://2651350543.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基于FRP的内网穿透测试——以SAKURA FRP为例</title>
+      <link>https://2651350543.github.io/posts/%E5%9F%BA%E4%BA%8Efrp%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%B5%8B%E8%AF%95%E4%BB%A5sakura-frp%E4%B8%BA%E4%BE%8B/</link>
+      <pubDate>Sun, 16 Apr 2023 11:38:02 +0800</pubDate>
+      
+      <guid>https://2651350543.github.io/posts/%E5%9F%BA%E4%BA%8Efrp%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%B5%8B%E8%AF%95%E4%BB%A5sakura-frp%E4%B8%BA%E4%BE%8B/</guid>
+      <description>内网穿透的作用 内网穿透也叫内网映射，将本地服务器内网IP端口提供到外网，实现外网连接访问的过程。内网穿透可以将原本只能在本机、本局域网内访问的项目网站等，实现外网也同样可以访问。
+FRP介绍 FRP 是一种快速反向代理，允许您将位于 NAT 或防火墙后面的本地服务器暴露给互联网。它目前支持 TCP 和 UDP，以及 HTTP 和 HTTPS 协议，允许通过域名将请求转发到内部服务。
+SAKURA FRP测试 使用免费的内网穿透服务SAKURA FRP，即将本地端口与具有公网IP的服务器端口进行绑定，可实现本地端口与外部网络端口的映射。
+下面演示具体操作过程。
+下载frp客户端，更改配置文件
+下载frp_0.48.0_windows_amd64，解压文件。其中文件夹结构如下，红框处为客户端配置文件和执行程序。
+启动frp服务，查看服务状态
+进入SAKURA FRP网站，创建隧道，截图如下。
+复制其隧道配置代码至配置文件。
+同时启动frpc程序，执行./frpc -c ./frpc.ini指令，验证连接状态，程序控制台以及连接状态截图如下。
+编写UDP例程，验证通信可行性
+笔者通过Python编写UDP收发程序，进行验证内网穿透数据是否可达。以下是相关的代码。
+send.py
+import socket if __name__ == &amp;#39;__main__&amp;#39;: UDP_IP = &amp;#34;frp-bid.top&amp;#34; UDP_PORT = 57457 MESSAGE = b&amp;#34;Hello,my name is LIN!&amp;#34; print(&amp;#34;UDP target IP: %s&amp;#34; % UDP_IP) print(&amp;#34;UDP target port: %s&amp;#34; % UDP_PORT) print(&amp;#34;message: %s&amp;#34; % MESSAGE) sock = socket.socket(socket.AF_INET, # Internet socket.</description>
+    </item>
+    
     <item>
       <title>快速上手MQTT——应用于PC端以及ESP32端</title>
       <link>https://2651350543.github.io/posts/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8Bmqtt%E5%BA%94%E7%94%A8%E4%BA%8Epc%E7%AB%AF%E4%BB%A5%E5%8F%8Aesp32%E7%AB%AF/</link>
