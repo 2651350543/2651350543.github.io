@@ -10,7 +10,28 @@
       <link>https://2651350543.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 16 Apr 2023 11:38:02 +0800</lastBuildDate><atom:link href="https://2651350543.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Jun 2023 17:52:56 +0800</lastBuildDate><atom:link href="https://2651350543.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>树莓派初始化——非显示器方式</title>
+      <link>https://2651350543.github.io/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%88%9D%E5%A7%8B%E5%8C%96/</link>
+      <pubDate>Thu, 01 Jun 2023 17:52:56 +0800</pubDate>
+      
+      <guid>https://2651350543.github.io/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%88%9D%E5%A7%8B%E5%8C%96/</guid>
+      <description>树莓派简介 一款基于ARM的微型电脑主板，以SD/MicroSD卡为内存硬盘，卡片主板周围有1/2/4个USB接口和一个10/100 以太网接口（A型没有网口），可连接键盘、鼠标和网线，同时拥有视频模拟信号的电视输出接口和HDMI高清视频输出接口，以上部件全部整合在一张仅比信用卡稍大的主板上，具备所有PC的基本功能只需接通电视机和键盘，就能执行如电子表格、文字处理、玩游戏、播放高清视频等诸多功能。 Raspberry Pi B款只提供电脑板，无内存、电源、键盘、机箱或连线。 以下是树莓派实物图。 树莓派的配置方式 树莓派的配置方式主要分为三大类，图形化窗口初始化、Raspberry Pi Imager初始化以及非图形化窗口初始化。显然，图像化窗口配置较为简单（类似于Windows系统，直接通过键鼠进行配置即可，下图为其初始化界面）。但是在特殊情况下，如没有HDMI转接线，或者无可用显示器时，后两者会更有优势。所以笔者针对该问题提出了较为详细且完备的解决方案。
+Raspberry Pi Imager初始化 该方式初始化十分简单，笔者建议使用此方法（需要科学上网，不然网速提不上去）。以下是配置截图。
+![image-20230601170343352](https://raw.githubusercontent.com/2651350543/repo_md/master/2023/06/upgit_20230601_1685610224.png #pic_center)
+保存配置进行烧录，截图如下。
+非图形化窗口配置步骤 下载树莓派ISO镜像，笔者使用的是Raspberry Pi OS with desktop
+使用镜像烧录工具进行烧录，笔者使用的是Rufus，配置截图如下。
+烧录完成后，进入系统的bootfs目录，添加ssh文件，内容为空，用于实现局域网内的远程连接。
+同样在系统的bootfs目录下，添加userconf.txt文件，配置系统的默认用户及密码（树莓派官方取消了默认用户pi）以用于远程登陆。该文件内容具体如下：
+pi:$6$8u6e3b3HkNIPdJ1.$Gmu6Y33JEL0W94hFLYtjzC6BmG803ysiDnVCYUtEVQXGpEYY4jeH1JUsIyOKhnA9koOV3xb0drxiZuNIInW63. 理论上用户可通过openssl自定义密码，此处笔者仅使用raspberry的加密串。即用户名为pi,密码为raspberry。
+树莓派可使用无线网络进行远程操作，所以为避免连接网线，可在系统的bootfs目录下，添加wpa_supplicant.conf文件，配置系统的默认WiFi。该文件内容具体如下：
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev update_config=1 country=CN network={ scan_ssid=1 ssid=&amp;#34;TP-LINK&amp;#34; psk=&amp;#34;708708708&amp;#34; proto=RSN key_mgmt=WPA-PSK pairwise=CCMP auth_alg=OPEN } 将SD卡保存并弹出，插入树莓派启动，测试PC与树莓派的连通性，并使用终端工具进行远程登陆即可。
+最终远程连接如下所示。
+┌──────────────────────────────────────────────────────────────────────┐ │ • MobaXterm Personal Edition v21.5 • │ │ (SSH client, X server and network tools) │ │ │ │ ➤ SSH session to pi@192.</description>
+    </item>
+    
     <item>
       <title>基于FRP的内网穿透测试——以SAKURA FRP为例</title>
       <link>https://2651350543.github.io/posts/%E5%9F%BA%E4%BA%8Efrp%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%B5%8B%E8%AF%95%E4%BB%A5sakura-frp%E4%B8%BA%E4%BE%8B/</link>
